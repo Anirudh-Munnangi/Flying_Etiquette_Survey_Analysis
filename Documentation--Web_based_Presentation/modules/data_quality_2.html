@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Data Quality-Price</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <style>
+        /* Style the tab */
+
+        div.tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            margin-left: 15px;
+        }
+        /* Style the buttons inside the tab */
+
+        div.tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: 1px solid #ccc;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+        /* Change background color of buttons on hover */
+
+        div.tab button:hover {
+            background-color: #ddd;
+        }
+        /* Create an active/current tablink class */
+
+        div.tab button.active {
+            background-color: #ccc;
+        }
+        /* Style the tab content */
+
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border-top: none;
+        }
+
+        .grad {
+            background-color: #150434;
+            text-align: center;
+            color: white;
+            height: 120px;
+            margin-bottom: 10px;
+        }
+
+        .vertical-menu {
+            background-color: white;
+            color: black;
+            display: block;
+            padding: 12px;
+            font-size: 15px;
+            text-decoration: none;
+            text-align: center;
+            border: 1px solid black;
+        }
+
+        a#active {
+            background-color: #ccc;
+            color: black;
+        }
+
+        a:active {
+            color: blue;
+        }
+
+        .btn-group {
+            background-color: #4CAF50;
+            /* Green background */
+            border: 1px solid green;
+            /* Green border */
+            color: white;
+            /* White text */
+            padding: 10px 24px;
+            /* Some padding */
+            cursor: pointer;
+            /* Pointer/hand icon */
+            float: left;
+            /* Float the buttons side by side */
+            left: 25%;
+            margin-top: 5%;
+        }
+
+        .btn-group:hover {
+            background-color: #3e8e41;
+        }
+
+        h4,
+        h5 {
+            text-decoration: underline;
+        }
+
+        li {
+            text-align: justify;
+        }
+    </style>
+    <script>
+        function openChart(evt, chartName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(chartName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        window.onload = function() {
+            document.getElementById("first").click()
+        }
+    </script>
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="grad">
+                <br/>
+                <h1>DATA&nbsp&nbspQUALITY&nbsp&nbspANALYSIS</h1>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="">
+        <div style="margin:1%">
+            <div class="row">
+                <div class="col-lg-2" style="border-style:groove;border-width:5px;background-color:#eee;">
+                    <div>
+                        <h3>Contents:</h3
+                      <br/>
+                      <a class="vertical-menu" href="data_quality_1.html">1. Introduction</a>
+                      <a class="vertical-menu" id="active" href="data_quality_2.html">2. Sparse/Blank Values</a>
+                      <a class="vertical-menu" href="data_quality_3.html">3. Clean Data</a>
+                      <a class="vertical-menu" href="data_quality_4.html">4. Complete Quality</a>
+                      <br/>
+                      <br/>
+                      <br/>
+                      <a class="vertical-menu" href="../index.html"><span style="text-decoration:underline;color:blue;">Go to HOME</span></a>
+                      <br/>
+                  </div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="row">
+                      <h4 style="margin-left:15px;">Click on the desired view-type</h4>
+                      <p style="margin-left:15px;color:blue;">NOTE: Click on the tabs below to be able to view the graph.</p>
+                      <div class="tab">
+                         <button class="tablinks" id="first" onclick="openChart(event, 'Height')">Height</button>
+                         <button class="tablinks" onclick="openChart(event, 'Unruly-Children')">Unruly Children</button>
+                         <button class="tablinks" onclick="openChart(event, 'Income')">Income</button>
+                      </div>
+                      <div id="Height" class="tabcontent">
+                          <div class="col-lg-8" style="border-width:3px; border-style:solid;">
+                              <img src="dqa_2_one.png" atl="Image of Height distribution" style="width:600px;height:700px;">
+                          </div>
+                          <div class="col-lg-1">
+                          </div>
+                          <div class="col-lg-3" style="background-color:yellow;margin-left:15px;float:right;">
+                              <h4 style="text-align:center;"> INFERENCES/MEASURES </h4>
+                              <ul>
+                                <li>Usually when the number of blank values is of a significant proportion, it starts to cause issues in data analysis.</li>
+                                <br/>
+                                <li>The main issue introduced by these error or blank values are the bias which gets into the analysis.</li>
+                                <br/>
+                                <li>This is a clear example where there are a lot of blank values in the field.</li>
+                                <br/>
+                              </ul>
+                              <br/>
+                              <br/>
+                          </div>
+                        </div>
+                        <div id="Unruly-Children" class="tabcontent">
+                            <div class="col-lg-8" style="border-width:3px; border-style:solid;">
+                                <img src="dqa_2_two.png" atl="Image of unruly-children distribution" style="width:600px;height:700px;">
+                            </div>
+                            <div class="col-lg-1">
+                            </div>
+                            <div class="col-lg-3" style="background-color:yellow;margin-left:15px;float:right;">
+                                <h4 style="text-align:center;"> INFERENCES/MEASURES </h4>
+                                <ul>
+                                  <li>Here we can see how the share of the blank values is of a significant contribution.</li>
+                                  <br/>
+                                  <li>This may be masking an important insight that one could probably gain.</li>
+                                  <br/>
+                                  <li>While doing analysis, one must be cognizant of such situations and not generalize without providing proper documenation.</li>
+                                  <br/>
+                                </ul>
+                                <br/>
+                                <br/>
+                            </div>
+                          </div>
+                          <div id="Income" class="tabcontent">
+                              <div class="col-lg-8" style="border-width:3px; border-style:solid;">
+                                  <img src="dqa_2_three.png" atl="Image of Income distribution" style="width:600px;height:700px;">
+                              </div>
+                              <div class="col-lg-1">
+                              </div>
+                              <div class="col-lg-3" style="background-color:yellow;margin-left:15px;float:right;">
+                                  <h4 style="text-align:center;"> INFERENCES/MEASURES </h4>
+                                  <ul>
+                                    <li>As it can be seen, the share of blank is also present here.</li>
+                                    <br/>
+                                    <li>Although only three charts have been shown for the sake of sanity, almost every field has blank values and you can see that in Section-4.</li>
+                                    <br/>
+                                    <li>Such a nature of data makes this step of quality analysis important so that the user is aware of the caveats of the analysis.</li>
+                                    <br/>
+                                  </ul>
+                                  <br/>
+                                  <br/>
+                              </div>
+                            </div>
+                    </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  </body>
+</html>

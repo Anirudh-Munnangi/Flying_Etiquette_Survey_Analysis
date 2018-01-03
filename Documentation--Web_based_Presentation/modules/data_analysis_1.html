@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Data Visualization-Introduction</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <style>
+        /* Style the tab */
+
+        div.tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            margin-left: 15px;
+        }
+        /* Style the buttons inside the tab */
+
+        div.tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: 1px solid #ccc;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+        /* Change background color of buttons on hover */
+
+        div.tab button:hover {
+            background-color: #ddd;
+        }
+        /* Create an active/current tablink class */
+
+        div.tab button.active {
+            background-color: #ccc;
+        }
+        /* Style the tab content */
+
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border-top: none;
+        }
+
+        .grad {
+            background-color: #150434;
+            text-align: center;
+            color: white;
+            height: 120px;
+            margin-bottom: 10px;
+        }
+
+        .vertical-menu {
+            background-color: white;
+            color: black;
+            display: block;
+            padding: 12px;
+            font-size: 15px;
+            text-decoration: none;
+            text-align: center;
+            border: 1px solid black;
+        }
+
+        a#active {
+            background-color: #ccc;
+            color: black;
+        }
+
+        a:active {
+            color: blue;
+        }
+
+        .btn-group {
+            background-color: #4CAF50;
+            /* Green background */
+            border: 1px solid green;
+            /* Green border */
+            color: white;
+            /* White text */
+            padding: 10px 24px;
+            /* Some padding */
+            cursor: pointer;
+            /* Pointer/hand icon */
+            float: left;
+            /* Float the buttons side by side */
+            left: 25%;
+            margin-top: 5%;
+        }
+
+        .btn-group:hover {
+            background-color: #3e8e41;
+        }
+
+        h4,
+        h5 {
+            text-decoration: underline;
+        }
+
+        li {
+            text-align: justify;
+        }
+    </style>
+    <script>
+        function openChart(evt, chartName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(chartName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        window.onload = function() {
+            document.getElementById("first").click()
+        }
+    </script>
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="grad">
+                <br/>
+                <h1>COMPARATIVE&nbsp&nbspINSIGHTS</h1>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="">
+        <div style="margin:1%">
+            <div class="row">
+                <div class="col-lg-2" style="border-style:groove;border-width:5px;background-color:#eee;">
+                    <div>
+                        <h3>Contents:</h3
+                      <br/>
+                      <a class="vertical-menu" id="active" href="data_analysis_1.html">1. Introduction</a>
+                      <a class="vertical-menu" href="data_analysis_2.html">2. Insights by Age</a>
+                      <a class="vertical-menu" href="data_analysis_3.html">3. Compare by Sex</a>
+                      <a class="vertical-menu" href="data_analysis_4.html">4. Analyse by Height</a>
+                      <a class="vertical-menu" href="data_analysis_5.html">5. By Salary and Education</a>
+                      <br/>
+                      <br/>
+                      <br/>
+                      <a class="vertical-menu" href="../index.html"><span style="text-decoration:underline;color:blue;">Go to HOME</span></a>
+                      <br/>
+                  </div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="row">
+                        <div class="col-lg-11" style="border:1px solid black;margin-left:15px;">
+                          <h4>INTRODUCTION:</h4>
+                          <p style="font-size:18px;text-align:justify;">These sections are associated with the display of the distributions associated with comparisons amongst fields leading to insights.</p>
+                          <p style="font-size:18px;text-align:justify;">These act as an interesting opportunity to visualize the fields and also to see how individual clases within a field react to another. Charts are organized into meaninful sections for better understanding.</p>
+                          <br/>
+                          <p style="font-size:18px;text-align:justify;">Following are the cases discussed in each of the topic along side:</p>
+                          <h5>Insights by Age:</h5><p>This portion visualizes some fields grouped by age.</p>
+                          <h5>Compare by Sex:</h5><p>This section plots the fields when compared among male and female responses.</p>
+                          <h5>Analyse by Height:</h5><p>This part shows charts related to different insights which are more related and distinguishable due to the height of a passenger.</p>
+                          <h5>By Salary and Education:</h5><p>This section shows few charts to check one property and its perception by difference in salary and education.</p>
+                            <br/>
+                            <br/>
+                            <br/>
+                        </div>
+                    </div>
+              </div>
+            </div>
+        </div>
+  </body>
+</html>

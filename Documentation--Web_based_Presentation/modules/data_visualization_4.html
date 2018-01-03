@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Data Quality-Price</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <style>
+        /* Style the tab */
+
+        div.tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            margin-left: 15px;
+        }
+        /* Style the buttons inside the tab */
+
+        div.tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: 1px solid #ccc;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+        /* Change background color of buttons on hover */
+
+        div.tab button:hover {
+            background-color: #ddd;
+        }
+        /* Create an active/current tablink class */
+
+        div.tab button.active {
+            background-color: #ccc;
+        }
+        /* Style the tab content */
+
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border-top: none;
+        }
+
+        .grad {
+            background-color: #150434;
+            text-align: center;
+            color: white;
+            height: 120px;
+            margin-bottom: 10px;
+        }
+
+        .vertical-menu {
+            background-color: white;
+            color: black;
+            display: block;
+            padding: 12px;
+            font-size: 15px;
+            text-decoration: none;
+            text-align: center;
+            border: 1px solid black;
+        }
+
+        a#active {
+            background-color: #ccc;
+            color: black;
+        }
+
+        a:active {
+            color: blue;
+        }
+
+        .btn-group {
+            background-color: #4CAF50;
+            /* Green background */
+            border: 1px solid green;
+            /* Green border */
+            color: white;
+            /* White text */
+            padding: 10px 24px;
+            /* Some padding */
+            cursor: pointer;
+            /* Pointer/hand icon */
+            float: left;
+            /* Float the buttons side by side */
+            left: 25%;
+            margin-top: 5%;
+        }
+
+        .btn-group:hover {
+            background-color: #3e8e41;
+        }
+
+        h4,
+        h5 {
+            text-decoration: underline;
+        }
+
+        li {
+            text-align: justify;
+        }
+    </style>
+    <script>
+        function openChart(evt, chartName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(chartName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        window.onload = function() {
+            document.getElementById("first").click()
+        }
+    </script>
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="grad">
+                <br/>
+                <h1>DIRECT&nbsp&nbspVISUALIZATIONS</h1>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="">
+        <div style="margin:1%">
+            <div class="row">
+                <div class="col-lg-2" style="border-style:groove;border-width:5px;background-color:#eee;">
+                    <div>
+                        <h3>Contents:</h3
+                      <br/>
+                      <a class="vertical-menu" href="data_visualization_1.html">1. Introduction</a>
+                      <a class="vertical-menu" href="data_visualization_2.html">2. Reclining seats</a>
+                      <a class="vertical-menu" href="data_visualization_3.html">3. Movement from seats</a>
+                      <a class="vertical-menu" id="active" href="data_visualization_4.html">4. Right of seat</a>
+                      <a class="vertical-menu" href="data_visualization_5.html">5. Kids</a>
+                      <a class="vertical-menu" href="data_visualization_6.html">6. Airline rules</a>
+                      <br/>
+                      <br/>
+                      <br/>
+                      <a class="vertical-menu" href="../index.html"><span style="text-decoration:underline;color:blue;">Go to HOME</span></a>
+                      <br/>
+                  </div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="row">
+                      <h4 style="margin-left:15px;">Click on the desired view-type</h4>
+                      <p style="margin-left:15px;color:blue;">NOTE: Click on the tabs below to be able to view the graph.</p>
+                      <div class="tab">
+                         <button class="tablinks" id="first" onclick="openChart(event, 'Armrest-3Seats')">Armrest 3Seats</button>
+                         <button class="tablinks" onclick="openChart(event, 'Armrest-2Seats')">Armrest 2Seats</button>
+                         <button class="tablinks" onclick="openChart(event, 'Window-Shade')">Window Shade</button>
+                      </div>
+                      <div id="Armrest-3Seats" class="tabcontent">
+                          <div class="col-lg-8" style="border-width:3px; border-style:solid;">
+                            <br/>
+                              <canvas id="Armrest3Seats" width="200" height="150"></canvas>
+                            <br/>
+                          </div>
+                          <div class="col-lg-1">
+                          </div>
+                          <div class="col-lg-3" style="background-color:yellow;margin-left:15px;float:right;">
+                              <h4 style="text-align:center;"> INFERENCES/MEASURES </h4>
+                              <ul>
+                                <li>The distribution shows the presence of decent accommodating travel experience.</li>
+                                <br/>
+                                <li>People seems to be mature about these little decisions.</li>
+                                <br/>
+                                <li>However, responses with more drastic schools of thought do exist.</li>
+                                <br/>
+                              </ul>
+                              <br/>
+                              <br/>
+                          </div>
+                      </div>
+                      <div id="Armrest-2Seats" class="tabcontent">
+                          <div class="col-lg-8" style="border-width:3px; border-style:solid;">
+                            <br/>
+                              <canvas id="Armrest2Seats" width="200" height="150"></canvas>
+                            <br/>
+                          </div>
+                          <div class="col-lg-1">
+                          </div>
+                          <div class="col-lg-3" style="background-color:yellow;margin-left:15px;float:right;">
+                              <h4 style="text-align:center;"> INFERENCES/MEASURES </h4>
+                              <ul>
+                                <li>Most people think arm rests should be shared.</li>
+                                <br/>
+                                <li>However, responses with more drastic school of thought do exist.</li>
+                                <br/>
+                              </ul>
+                              <br/>
+                              <br/>
+                          </div>
+                      </div>
+                      <div id="Window-Shade" class="tabcontent">
+                          <div class="col-lg-8" style="border-width:3px; border-style:solid;">
+                            <br/>
+                              <canvas id="WindowShade" width="200" height="150"></canvas>
+                            <br/>
+                          </div>
+                          <div class="col-lg-1">
+                          </div>
+                          <div class="col-lg-3" style="background-color:yellow;margin-left:15px;float:right;">
+                              <h4 style="text-align:center;"> INFERENCES/MEASURES </h4>
+                              <ul>
+                                <li>The answers to this fact seems competitive.</li>
+                                <br/>
+                                <li>Proponents of both options exist.</li>
+                                <br/>
+                              </ul>
+                              <br/>
+                              <br/>
+                          </div>
+                      </div>
+                    </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+            // Script to plot the bar of chart of Data Science Skills using chart js
+            Chart.defaults.global.animation.duration = 2000;
+            Chart.defaults.global.animation.animationSteps = 100;
+            var ctx = document.getElementById("Armrest3Seats").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["People in aisle and window seat","Whoever puts their arm first","Person in middle seat","The arm rests should be shared","Other(Please Specify)"],
+                    datasets: [{
+                        label: 'Count of responses',
+                        data: [18,87,119,587,45],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.4)',
+                            'rgba(54, 162, 235, 0.4)',
+                            'rgba(255, 206, 86, 0.4)',
+                            'rgba(75, 192, 192, 0.4)',
+                            'rgba(153, 102, 255, 0.4)'
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    title: {
+                        display: true,
+                        text: 'In a row of three seats, who should get to use the two arm rests?',
+                        fontSize: 18
+                    },
+                    legend: {
+                        display: false
+                    }
+
+                }
+            });
+        </script>
+
+        <script>
+            // Script to plot the bar of chart of Data Science Skills using chart js
+            Chart.defaults.global.animation.duration = 2000;
+            Chart.defaults.global.animation.animationSteps = 100;
+            var ctx = document.getElementById("Armrest2Seats").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["Other(Please Specify)","The person by the window","The person in aisle","Whoever puts their hand first","The arm rests should be shared"],
+                    datasets: [{
+                        label: 'Count of responses',
+                        data: [37, 41, 63, 132, 583],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.4)',
+                            'rgba(54, 162, 235, 0.4)',
+                            'rgba(255, 206, 86, 0.4)',
+                            'rgba(75, 192, 192, 0.4)',
+                            'rgba(153, 102, 255, 0.4)'
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    title: {
+                        display: true,
+                        text: 'In a row of two seats, who should get to use the middle arm rest?',
+                        fontSize: 18
+                    },
+                    legend: {
+                        display: false
+                    }
+
+                }
+            });
+        </script>
+
+        <script>
+            // Script to plot the bar of chart of Data Science Skills using chart js
+            var ctx = document.getElementById("WindowShade").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ["The person in the window seat should have exclusive control","Everyone in the row should have some say"],
+                    datasets: [{
+                        label:'Count of responses',
+                        data: [361, 495],
+                        backgroundColor: [
+                            'rgba(0, 187, 201, 0.7)',
+                            'rgba(255, 0, 255, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(0, 187, 201, 1)',
+                            'rgba(255, 0, 255, 1)'
+                        ],
+                        borderWidth: 3
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Who should have control over the window shade?',
+                        fontSize: 14
+                    },
+                    legend: {
+                        display: true
+                    },
+                    animation:
+                    {
+                      aninmationScale:true,
+                      animationRotate:true
+                    }
+                }
+            });
+        </script>
+
+  </body>
+</html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Data Quality-Price</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <style>
+        /* Style the tab */
+
+        div.tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            margin-left: 15px;
+        }
+        /* Style the buttons inside the tab */
+
+        div.tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: 1px solid #ccc;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+        /* Change background color of buttons on hover */
+
+        div.tab button:hover {
+            background-color: #ddd;
+        }
+        /* Create an active/current tablink class */
+
+        div.tab button.active {
+            background-color: #ccc;
+        }
+        /* Style the tab content */
+
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border-top: none;
+        }
+
+        .grad {
+            background-color: #150434;
+            text-align: center;
+            color: white;
+            height: 120px;
+            margin-bottom: 10px;
+        }
+
+        .vertical-menu {
+            background-color: white;
+            color: black;
+            display: block;
+            padding: 12px;
+            font-size: 15px;
+            text-decoration: none;
+            text-align: center;
+            border: 1px solid black;
+        }
+
+        a#active {
+            background-color: #ccc;
+            color: black;
+        }
+
+        a:active {
+            color: blue;
+        }
+
+        .btn-group {
+            background-color: #4CAF50;
+            /* Green background */
+            border: 1px solid green;
+            /* Green border */
+            color: white;
+            /* White text */
+            padding: 10px 24px;
+            /* Some padding */
+            cursor: pointer;
+            /* Pointer/hand icon */
+            float: left;
+            /* Float the buttons side by side */
+            left: 25%;
+            margin-top: 5%;
+        }
+
+        .btn-group:hover {
+            background-color: #3e8e41;
+        }
+
+        h4,
+        h5 {
+            text-decoration: underline;
+        }
+
+        li {
+            text-align: justify;
+        }
+    </style>
+    <script>
+        function openChart(evt, chartName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(chartName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        window.onload = function() {
+            document.getElementById("first").click()
+        }
+    </script>
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="grad">
+                <br/>
+                <h1>DATA&nbsp&nbspQUALITY&nbsp&nbspANALYSIS</h1>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="">
+        <div style="margin:1%">
+            <div class="row">
+                <div class="col-lg-2" style="border-style:groove;border-width:5px;background-color:#eee;">
+                    <div>
+                        <h3>Contents:</h3
+                      <br/>
+                      <a class="vertical-menu" href="data_quality_1.html">1. Introduction</a>
+                      <a class="vertical-menu" href="data_quality_2.html">2. Sparse/Blank Values</a>
+                      <a class="vertical-menu" href="data_quality_3.html">3. Clean Data</a>
+                      <a class="vertical-menu" id="active" href="data_quality_4.html">4. Complete Quality</a>
+                      <br/>
+                      <br/>
+                      <br/>
+                      <a class="vertical-menu" href="../index.html"><span style="text-decoration:underline;color:blue;">Go to HOME</span></a>
+                      <br/>
+                  </div>
+                </div>
+                <div class="col-lg-10">
+                  <h3> Following is the complete data quality analysis of the flying-etiquette dataset:</h3>
+                        <br/>
+                        <div class="row">
+                            <div class="col-lg-11" style="border:3px solid black;margin-left:15px;">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Column Name</th>
+                                            <th>Missing Values</th>
+                                            <th>Consistent</th>
+                                            <th>Duplicates</th>
+                                            <th>Believability</th>
+                                            <th>Key Insights</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>RespondentID</td>
+                                            <td>Nil</td>
+                                            <td>Yes</td>
+                                            <td>Nil</td>
+                                            <td>1040 all unique values</td>
+                                            <td>No Issues</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Frequent-Flying</td>
+                                            <td>Nil</td>
+                                            <td>Yes</td>
+                                            <td>1034 duplicates</td>
+                                            <td>There are 5 unique values which is quite possible</td>
+                                            <td>No Issues</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Seat Recline Preference</td>
+                                            <td>182 missing values</td>
+                                            <td>Yes but with some null values</td>
+                                            <td>1034 duplicates</td>
+                                            <td>There are 5 unique values along with a bunch of empty values</td>
+                                            <td>Care must be taken during analysis</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Height</td>
+                                            <td>182 missing values</td>
+                                            <td>Yes, but with empty values</td>
+                                            <td>1019 duplicates</td>
+                                            <td>There are 20 unique values for height which is expected</td>
+                                            <td>Can be grouped and used in subsequent analysis</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Children under 18</td>
+                                            <td>189 missing values</td>
+                                            <td>Yes except some null values</td>
+                                            <td>1037 duplicates</td>
+                                            <td>There are 2 unique values and one null response which is expected for a binary response</td>
+                                            <td>Can be used in analysis given caution about the null values</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Middle Armrest usage in three seats</td>
+                                            <td>184 missing values</td>
+                                            <td>There is consitency with the presence of blank values</td>
+                                            <td>1034 duplicates</td>
+                                            <td>There are 5 unique values</td>
+                                            <td>Can be used in generating insights with care</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Middle Armrest usage in two seats</td>
+                                            <td>184 missing values</td>
+                                            <td>There is consitency with the presence of blank values</td>
+                                            <td>1034 duplicates</td>
+                                            <td>There are 5 unique values</td>
+                                            <td>Can be used in generating insights with care</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Control over window shade</td>
+                                            <td>184 missing values</td>
+                                            <td>Consistent although blank values are present</td>
+                                            <td>1037 duplicate values</td>
+                                            <td>Only two unique values are present. Logically more types of response can be expected</td>
+                                            <td>Use with caution</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Moving an unsold seat</td>
+                                            <td>185 missing values</td>
+                                            <td>Consistent along with a fixed number of blank values</td>
+                                            <td>1036 duplicate values</td>
+                                            <td>3 unique values</td>
+                                            <td>Can be ulitized with caution in analysis</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Speaking to neighbor</td>
+                                            <td>185 missing values</td>
+                                            <td>Yes</td>
+                                            <td>1036 duplicates</td>
+                                            <td>3 unique values which is possible and believable</td>
+                                            <td>Can prove important in analysis</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Moving out if not in aisle seat</td>
+                                            <td>185 missing values</td>
+                                            <td>Yes with some blank responses</td>
+                                            <td>1033 duplicates</td>
+                                            <td>6 unique values for such a question is an expected count</td>
+                                            <td>Good for analysis</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Recline Obligation for person behind</td>
+                                            <td>186 missing values</td>
+                                            <td>Yes</td>
+                                            <td>1037 duplicates</td>
+                                            <td>2 unique values is expected for a binary question</td>
+                                            <td>Good for comparative insights</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Rude to Recline Seat</td>
+                                            <td>186 missing values</td>
+                                            <td>Yes</td>
+                                            <td>1037 duplicates</td>
+                                            <td>3 unique values is believable</td>
+                                            <td>Good for comparative insights</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Eliminate recline option</td>
+                                            <td>186 missing values</td>
+                                            <td>Yes</td>
+                                            <td>1037 duplicates</td>
+                                            <td>2 unique values is expected for a binary question</td>
+                                            <td>Good for comparative insights</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Switch seats for friends</td>
+                                            <td>190 missing values</td>
+                                            <td>Yes but with a bunch of blank responses</td>
+                                            <td>1036 duplicates</td>
+                                            <td>3 unique values is believable</td>
+                                            <td>Can be used for analysis. Must keep in mind null values</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Switch seats for family</td>
+                                            <td>190 missing values</td>
+                                            <td>Yes but with a bunch of blank responses</td>
+                                            <td>1036 duplicates</td>
+                                            <td>3 unique values is believable</td>
+                                            <td>Can be used for analysis. Must keep in mind null values</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Wake passenger for bathroom</td>
+                                            <td>190 missing values</td>
+                                            <td>Yes but with a bunch of blank responses</td>
+                                            <td>1036 duplicates</td>
+                                            <td>3 unique values is believable</td>
+                                            <td>Can be used for analysis. Must keep in mind null values</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Wake passenger for walking around</td>
+                                            <td>190 missing values</td>
+                                            <td>Yes but with a bunch of blank responses</td>
+                                            <td>1036 duplicates</td>
+                                            <td>3 unique values is believable</td>
+                                            <td>Can be used for analysis. Must keep in mind null values</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Rude to bring a baby</td>
+                                            <td>191 missing values</td>
+                                            <td>Yes but with a bunch of blank responses</td>
+                                            <td>1036 duplicates</td>
+                                            <td>3 unique values is believable</td>
+                                            <td>Can be used for analysis</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Rude to bring unruly children</td>
+                                            <td>191 missing values</td>
+                                            <td>Yes but with a bunch of blank responses</td>
+                                            <td>1036 duplicates</td>
+                                            <td>3 unique values is believable</td>
+                                            <td>Use for analysis</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Electronics takeoff/landing</td>
+                                            <td>191 missing values</td>
+                                            <td>Yes but with a bunch of blank responses</td>
+                                            <td>1037 duplicates</td>
+                                            <td>2 unique values is believable for a binary question</td>
+                                            <td>Important for analysis</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cigarette in Bathroom</td>
+                                            <td>191 missing values</td>
+                                            <td>Yes but with a bunch of blank responses</td>
+                                            <td>1037 duplicates</td>
+                                            <td>2 unique values is believable for a binary question</td>
+                                            <td>Quite skewed but very believable</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gender</td>
+                                            <td>33 missing values</td>
+                                            <td>Yes. Has very few missing values</td>
+                                            <td>1037 duplicates</td>
+                                            <td>2 unique values is believable for a binary question</td>
+                                            <td>Very important for analysis</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Age</td>
+                                            <td>33 missing values</td>
+                                            <td>Yes but with a bunch of blank responses</td>
+                                            <td>1035 duplicates</td>
+                                            <td>4 unique values is possible.</td>
+                                            <td>Very important for analysis</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Household income</td>
+                                            <td>214 missing values</td>
+                                            <td>Yes with some missing values</td>
+                                            <td>1034 duplicates</td>
+                                            <td>5 unique values is believable</td>
+                                            <td>Good measure to take on perception by salary</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Education</td>
+                                            <td>39 missing values</td>
+                                            <td>Yes with very few missing values</td>
+                                            <td>1034 duplicates</td>
+                                            <td>5 unique values is expected</td>
+                                            <td>Good measure to take on perception by education</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Location</td>
+                                            <td>42 missing values</td>
+                                            <td>Yes with few blank responses</td>
+                                            <td>1030 duplicates</td>
+                                            <td>9 unique locations is possible</td>
+                                            <td>Can be used to classify responses</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
